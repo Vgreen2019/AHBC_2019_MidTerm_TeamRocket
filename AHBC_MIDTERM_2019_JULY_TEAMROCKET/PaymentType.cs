@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Payments
+namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 {
-    public class Payment : IPaymentMethod
+    public class PaymentType : IPaymentMethod
     {
         public double SubTotal { get; set; }
         public double SalesTaxTotal { get; set; }
@@ -44,7 +44,7 @@ namespace Payments
             return grandTotal;
         }
 
-        public void MethodOfPayment()
+        public void MethodOfPayment(string total)
         {
             while (true)
             {
@@ -52,7 +52,7 @@ namespace Payments
                 switch (paymentType)
                 {
                     case 1:
-                        PayCash();
+                        ();
                         return;
 
                     case 2:

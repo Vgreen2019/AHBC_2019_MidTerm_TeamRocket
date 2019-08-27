@@ -5,28 +5,24 @@ using System.Text.RegularExpressions;
 
 namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 {
-    
+
     public class Check : IPayment
     {
         public string AccountNumber { get; set; }
         public string RoutingNumber { get; set; }
 
-        public override void MakeAPayment()
-        {
-        }
-
-
-        public new void PayWithCheck(string total)
+       
+        public void Pay(string total)
         {
             Console.WriteLine($"Total: {total}\n"); //might not need based on how user interface is set up
 
-            Console.WriteLine("Check Number:\n");     //validation
+            Console.Write("Check Number:\n");     //validation
             string checkNum = ValidateCheckNumber(Console.ReadLine());
 
-            Console.WriteLine("Routing Number:\n");     //validation
+            Console.Write("Routing Number:\n");     //validation
             string routeNum = ValidateRouteNumber(Console.ReadLine());
 
-            Console.WriteLine("Your transaction has been processed.");
+            Console.Write("Your transaction has been processed.");
 
         }
 
@@ -82,3 +78,5 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
             }
 
         }
+    }
+}

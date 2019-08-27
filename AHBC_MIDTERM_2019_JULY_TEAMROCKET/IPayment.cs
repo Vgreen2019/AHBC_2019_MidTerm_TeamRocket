@@ -4,9 +4,10 @@ using System.Text;
 
 namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 {
-    public interface ICash
+    public interface IPayment
     {
-        void PayWithCash(string total);
+        void Pay(string total);
+
 
     }
 }
