@@ -50,8 +50,8 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                         
 
 
-                        CategorySelectionApp selections = new CategorySelectionApp(startMenuChoice);
-                        selections.categorySelector();
+                        //CategorySelectionApp selections = new CategorySelectionApp(startMenuChoice);
+                        //selections.categorySelector();
                         isNotMenuChoice = false;
 
 

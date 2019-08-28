@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
@@ -18,14 +16,15 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
             VISA = 1,
             MASTER = 2,
             DISC = 3,
-            AMEX = 4
+            AMEX = 4,
+            CANCEL = 5
+
         };
 
-
-        public void Pay(string total)
+               public void Pay(string total)
         {
             Console.WriteLine($"Total: {total}\n"); //might not need based on how user interface is set up
-            Console.WriteLine("Please choose a Card Type: \n1. VISA \n2. MASTER \n3. DISC \n4. AMEX");
+            Console.WriteLine("Please choose a Card Type: \n1. VISA \n2. MASTER \n3. DISC \n4. AMEX \n5. CANCEL");
 
 
             while (true)
@@ -58,24 +57,29 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                     else if (result == CardTypes.AMEX)
                     {
 
-                        Console.WriteLine("\nCard:");
+                        Console.Write("\nCard:");
                         string cardNum = ValidateCardNumber2(Console.ReadLine());
 
 
-                        Console.WriteLine("\nExpiration Date (MM/YY) or (MM/YYYY):");
+                        Console.Write("\nExpiration Date (MM/YY) or (MM/YYYY):");
                         string expDate = ValidateExpDate(Console.ReadLine());
 
 
-                        Console.WriteLine("\nCVV:");
+                        Console.Write("\nCVV:");
                         string cvvNum = ValidateCVVCode2(Console.ReadLine());
 
 
-                        Console.WriteLine("Your transaction has been processed.");
+                        Console.WriteLine("Your transaction has been processed.\n");
+                        break;
+                    }
+                    else if(result == CardTypes.CANCEL)
+                    {
+                        Console.WriteLine("Your transaction has been cancelled.\n");
                         break;
                     }
                     else
                     {
-                        Console.WriteLine("This is not a valid card type. Please try again.");
+                        Console.WriteLine("This is not a valid card type. Please try again.\n");
                         continue;
                     }
                 }
@@ -96,8 +100,8 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
             {
                 do
                 {
-                    Console.WriteLine("This is not a valid card number. Please re-enter.");
-                    Console.WriteLine("\nCard Number:");
+                    Console.WriteLine("This is not a valid CVV number. Please re-enter.");
+                    Console.Write("\nCVV Number:");
                     cvvNum = (Console.ReadLine());
 
                 }
@@ -120,8 +124,8 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
             {
                 do
                 {
-                    Console.WriteLine("This is not a valid card number. Please re-enter.");
-                    Console.WriteLine("\nCard Number:");
+                    Console.WriteLine("This is not a valid CVV number. Please re-enter.");
+                    Console.Write("\nCVV Number:");
                     cvvNum = (Console.ReadLine());
 
                 }
@@ -148,9 +152,10 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                 do
                 {
                     Console.WriteLine("This is not a valid expiration date. Please re-enter.");
-                    Console.WriteLine("\nExpiration Date:");
-                    expDate = (Console.ReadLine());
+                    Console.Write("\nExpiration Date:");
+                    expDate = Console.ReadLine();
 
+                   
                 }
                 while (!rgx.IsMatch(expDate));
 
@@ -174,7 +179,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                 do
                 {
                     Console.WriteLine("This is not a valid card number. Please re-enter.");
-                    Console.WriteLine("\nCard Number:");
+                    Console.Write("\nCard Number:");
                     cardNum = (Console.ReadLine());
 
                 }
@@ -199,7 +204,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                 do
                 {
                     Console.WriteLine("This is not a valid card number. Please re-enter.");
-                    Console.WriteLine("\nCard Number:");
+                    Console.Write("\nCard Number:");
                     cardNum = (Console.ReadLine());
 
                 }

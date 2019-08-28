@@ -7,11 +7,17 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
         static void Main(string[] args)
         {
 
-            //StoreApp tester = new StoreApp();
-            //tester.Run();
+            StoreApp tester = new StoreApp();
+            tester.Run();
 
-            ShoppingMenu tst = new ShoppingMenu();
-            tst.Run();
+            //var ccCard = new CreditCard();
+
+            //ccCard.Pay("42.35");
+
+            //Console.WriteLine("Would you like to complete another transaction?");
+            //Console.ReadLine();
+
+
 
         }
 

@@ -33,19 +33,19 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 
 
 
-        public CategorySelectionApp(int userSelection)
+        //public CategorySelectionApp(int userSelection)
+        //{
+        //    userMenuSelection = userSelection;
+        //}
+
+        public void CategorySelector()
         {
-            userMenuSelection = userSelection;
-        }
+            //localCategory localCategory;
 
-        public void categorySelector()
-
-        {
-            localCategory localCategory;
-
-            currentInventory = loaclInventory.GenerateStoreInventory();
+            //currentInventory = loaclInventory.GenerateStoreInventory();
 
             Console.WriteLine("Which item would you like to purchase? (Select from the folowing numbers)");
+
             if (userMenuSelection == 1)
             {
                 int i = 0;
