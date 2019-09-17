@@ -5,19 +5,12 @@ using System.Text.RegularExpressions;
 
 namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 {
-    class ShoppingMenu
+    public class ShoppingMenu
     {
         private static string initialUserInput = "";
         private static bool isValid, isNotMenuChoice;
         private static int startMenuChoice;
         public static List<string> categories = new List<string> { };
-
-        public enum MyEnum
-        {
-
-
-
-        }
 
         public static void RunShoppingMenu(StoreInventory currentInventory, ShoppingCart userCart)
         {
@@ -25,7 +18,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
             char loopBreaker;
             do
             {
-               
+                Console.Clear();
                 categories.Clear();
 
                 foreach (var item in currentInventory)
@@ -38,6 +31,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                 }
                 menuOptions();
                 initialUserInput = Console.ReadLine();
+                
                 Console.WriteLine();
 
                 do
@@ -54,7 +48,6 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                             Console.Clear();
                             menuOptions();
                             initialUserInput = Console.ReadLine();
-
                             isValid = false;
                         }
 
@@ -63,31 +56,24 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 
                     if (startMenuChoice > 0 && startMenuChoice <= categories.Count )
                     {
-
                         CategorySelectionApp selections = new CategorySelectionApp(startMenuChoice, categories);
                         selections.categorySelector(currentInventory, userCart);
                         isNotMenuChoice = false;
-
-
                     }
                     else
                     {
-
                         Console.Clear();
                         Console.Write("Not a valid option. ");
                         menuOptions();
                         initialUserInput = Console.ReadLine();
                         isNotMenuChoice = true;
-
                     }
 
                 } while (isNotMenuChoice);
 
-
-
-                Console.WriteLine("Do you wish to continue adding items to your cart (enter y/n): "); //ask user to if they want to continue
+                Console.WriteLine("Do you wish to continue adding items to your cart, or checkout? (enter y to keep adding/enter n to checkout): "); //ask user to if they want to continue
                 loopBreaker = IsValidLoopBreaker(Console.ReadLine()); //storing answer and if it's valid input 
-
+               
 
             } while (loopBreaker == 'y');
 
@@ -96,14 +82,16 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 
         private static void menuOptions()
         {
-            Console.WriteLine("Please selecet for the following categories:\n");
+            Console.Clear();
+
+            Console.WriteLine("\nPlease select for the following categories:\n");
             int i = 1;
             foreach (var item in categories)
             {
                 Console.WriteLine($"[{i}] {item}\r");
                 i++;
             }
-
+          
             //Console.WriteLine("[1] Clothiging\n[2] Accessories\n[3] Shoes\n[4] Outerwear\n");
 
         }

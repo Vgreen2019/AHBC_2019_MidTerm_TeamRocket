@@ -38,6 +38,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
         {
             //sales tax total = subtotal * the taxrate of 6%
             SalesTaxTotal = SubTotal * taxRate;
+            SalesTaxTotal = Math.Round(SalesTaxTotal, 2, MidpointRounding.AwayFromZero);
             return SalesTaxTotal;
         }
 
@@ -45,6 +46,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
         {
             // grand total = subtotal + tax total
             GrandTotal = SubTotal + SalesTaxTotal;
+            GrandTotal = Math.Round(GrandTotal, 2, MidpointRounding.AwayFromZero);
             return GrandTotal;
         }
 
@@ -53,26 +55,33 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
 
             Console.Clear();
 
-            Console.WriteLine("Thank you for your order fetching your total...");
-            Console.WriteLine($"Subtotal: ${SubTotal}");
-            Console.WriteLine($"Tax: ${SalesTaxTotal}");
-            Console.WriteLine($"Grand Total: ${GrandTotal}");
+
+            Console.WriteLine("Thank you for your order! One second while we fetch your total...");
+
+            Console.WriteLine($"Subtotal: ${NumberToDollarFormat.Execute(SubTotal)}");
+            Console.WriteLine($"Tax: ${NumberToDollarFormat.Execute(SalesTaxTotal)}");
+            Console.WriteLine($"Grand Total: ${NumberToDollarFormat.Execute(GrandTotal)}");
             Console.WriteLine();
 
-            Console.WriteLine("Please selece a method of payment (enter in number): " +
-                "\n [1.] Credit Card" +
-                "\n [2.] Cash" +
-                "\n [3.] Check");
+            Console.WriteLine("Please select a method of payment (enter a number): " +
+                "\n [1] Credit Card" +
+                "\n [2] Cash" +
+                "\n [3] Check");
+            string readingInput = Console.ReadLine();
+            
+            
             //validating input with an enum try parse
+            
             bool isInvalidInput = true;
             //While the input is invalid this loop will continue to run
             while (isInvalidInput)
             {
-                if (Enum.TryParse<PaymentSelection>(Console.ReadLine(), out PaymentSelection userPaymentSelection))
+                if (Enum.TryParse<PaymentSelection>(readingInput, out PaymentSelection userPaymentSelection))
                 {
                     switch (userPaymentSelection)
                     {
                         case PaymentSelection.CreditCard:
+                            Console.Clear();
                             CreditCard userCreditCard = new CreditCard();
                             userCreditCard.Pay(GrandTotal);
                             Receipt userReceipt = new Receipt(GrandTotal, SubTotal, userShoppingCart.ItemstoPurchase);
@@ -83,6 +92,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                             return;
 
                         case PaymentSelection.Cash:
+                            Console.Clear();
                             Cash userCash = new Cash();
                             userCash.Pay(GrandTotal);
                             Receipt cashUserReceipt = new Receipt(GrandTotal, SubTotal, userShoppingCart.ItemstoPurchase);
@@ -91,6 +101,7 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                             return;
 
                         case PaymentSelection.Check:
+                            Console.Clear();
                             Check userCheck = new Check();
                             userCheck.Pay(GrandTotal);
                             Receipt checkUserReceipt = new Receipt(GrandTotal, SubTotal, userShoppingCart.ItemstoPurchase);
@@ -104,6 +115,22 @@ namespace AHBC_MIDTERM_2019_JULY_TEAMROCKET
                     }
 
                 }
+                else
+                {
+                    Console.WriteLine("ERROR invalid input please enter again: ");
+                    Console.WriteLine("Please selece a method of payment [Select 1-3]: " +
+                "\n [1] Credit Card" +
+                "\n [2] Cash" +
+                "\n [3] Check" +
+                "\n Enter x to return to the main menu");
+                    readingInput = Console.ReadLine();
+                    if (readingInput == "x")
+                    {
+                        StoreApp takeBackToMenu = new StoreApp();
+                        takeBackToMenu.RunStore();
+                    }
+                }
+               
 
 
 
